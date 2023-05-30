@@ -1,0 +1,26 @@
+{
+    "name": "C14-Tech-Blog-KC",
+    "version": "1.0.0",
+    "description": "Full Stack web application for tech blog posts",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js",
+        "seed": "node seeds/index.js"
+    },
+
+    "author": "",
+    "license": "ISC",
+    "homepage": "",
+    "dependencies": {
+        "bcrypt": "^5.0.0",
+        "connect-session-sequelize": "^7.0.4",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.2.0",
+        "express-session": "^1.17.1",
+        "mysql2": "^2.2.5",
+        "sequelize": "^6.3.5"
+    }
+    
+}
