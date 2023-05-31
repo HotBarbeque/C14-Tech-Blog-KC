@@ -21,6 +21,7 @@ Full Stack web application for tech blog posts. The app allows a user to sign-up
 ## Usage
 
 [Heroku](https://c14-tech-blog-kc.herokuapp.com/)
+![Screenshot](./screenshot.PNG)
 
 
 ## License
