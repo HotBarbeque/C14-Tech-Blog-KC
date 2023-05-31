@@ -1,8 +1,10 @@
+// Importing required modules and models
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
+// GET route for retrieving all posts with associated users and comments
 router.get('/', withAuth, (req, res) => {
     Post.findAll({
         where: {
@@ -34,6 +36,7 @@ router.get('/', withAuth, (req, res) => {
     });
 });
 
+// GET route for retrieving a single post by its ID with associated user and comments
 router.get('/edit/:id', withAuth, (req, res) => {
     Post.findOne({
         where: {
@@ -69,6 +72,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     });
 });
 
+// GET route for retrieving a single user by its ID
 router.get('/edituser', withAuth, (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
@@ -89,6 +93,7 @@ router.get('/edituser', withAuth, (req, res) => {
         res.status(500).json(err);
     });
 });
+
 
 module.exs = router;
 module.exports = router;

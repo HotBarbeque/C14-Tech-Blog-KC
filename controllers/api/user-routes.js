@@ -1,10 +1,11 @@
+// Importing required modules and models
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 const session = require('express-session');
 const withAuth = require('../../utils/auth');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-
+// GET route to retrieve all users
 router.get('/', (req, res) => {
     User.findAll({
         attributes: { exclude: ['password'] }
@@ -16,6 +17,7 @@ router.get('/', (req, res) => {
         });
     });
 
+// GET route to retrieve a user by ID
 router.get('/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
@@ -50,6 +52,7 @@ router.get('/:id', (req, res) => {
         });
     });
 
+// POST route to create a new user
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
@@ -71,6 +74,7 @@ router.post('/', (req, res) => {
         });
 });
 
+// POST route to login
 router.post('/login',  (req, res) => {
     User.findOne({
         where: {
@@ -96,6 +100,7 @@ router.post('/login',  (req, res) => {
     });  
 });
 
+// POST route to logout
 router.post('/logout', withAuth, (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -106,8 +111,8 @@ router.post('/logout', withAuth, (req, res) => {
     }
 })
 
+// PUT route to update a user by ID
 router.put('/:id', withAuth, (req, res) => {
-
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -127,6 +132,7 @@ router.put('/:id', withAuth, (req, res) => {
         });
     })
 
+// DELETE route to delete a user by ID
 router.delete('/:id', withAuth, (req, res) => {
     User.destroy({
         where: {
@@ -146,4 +152,5 @@ router.delete('/:id', withAuth, (req, res) => {
             });
     });
 
+// Exporting the router module
 module.exports = router;
